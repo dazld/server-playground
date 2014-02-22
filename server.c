@@ -65,12 +65,13 @@
                 continue;
             }
             printf("server: got connection from %s\n", inet_ntoa(their_addr.sin_addr));
-            printf("num connections: %d\n", connection_count);
+            printf("connections served: %d\n", connection_count);
             if (send(new_fd, "Hello, world!\n", 14, 0) == -1){
                 perror("send");
             }
-            send(new_fd, "FIN", 3,0);
-            connection_count++;    
+            send(new_fd, "FIN coming..?", 13,0); // when does the FIN packet get sent? node is throwing an error
+            connection_count++;
+            // shutdown(new_fd,0); // is this needed? What flags to set?
             close(new_fd);
 
         }

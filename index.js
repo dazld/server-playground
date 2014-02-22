@@ -11,17 +11,17 @@ function doConnect(done){
 
 	client.on('data', function(data) {
 		console.log('rx: ',data.toString());
-		// client.end();
+		client.end();
 	});
 
 	client.on('error', function(err) {
 		console.log('client error', err);
-		done(doConnect);
+		// done(doConnect);
 	});
 
 	client.on('end', function() {
 		console.log('client disconnected');
-		// done(doConnect);
+		done(doConnect);
 	});
 
 
